@@ -1,0 +1,17 @@
+startup mongod server:
+	cd documents/coding/mongodb-osx-x86_64-3.6.2/bin
+	./mongod --dbpath ~/documents/coding/studybuddy/user-db --port 8080
+
+Startup mongo database:
+	add new shell
+	./mongo --port 8080
+
+startup local server
+	add new shell
+	cd ~
+	cd documents/coding/studybuddy
+	nodemon server.js
+
+
+root/administrator write access (for downloading node modules)
+	sudo chown -R $USER /usr/local

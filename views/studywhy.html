@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <title>Why StudyBuddy</title>
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="styles/styles.css">
+   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+   <style>
+     .background {
+       position: fixed;
+       left: 0;
+       right: 0;
+       z-index: 1;
+
+       -webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+       -o-filter: blur(5px);
+       -ms-filter: blur(5px);
+       filter: blur(5px);
+     }
+
+     .content {
+       position: relative;
+       left: 0;
+       right: 0;
+       z-index: 9999;
+       margin-left: 20px;
+       margin-right: 20px;
+     }
+
+     p{
+       font-family: 'Roboto';
+       font-size: 0.5em;
+     }
+     h2{
+       font-family: 'Roboto';
+       font-style: medium;
+       font-size: 2.4em;
+     }
+     #gicon{
+       width: 10px;
+       height: 10px;
+     }
+   </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default" id="nav">
+      <div class="container-fluid navchild">
+        <div class="navbar-header navchild">
+          <a class="navbar-brand" id="navchild" href="#">Study Buddy</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#" id="navactive">Why?</a></li>
+          <!--
+          <li><a href="#">For Students</a></li>
+          <li><a href="#">For Parents</a></li>
+        -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="http://localhost:3000/signup" id="navchild">
+              Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  <div class = "container" id="mainwhy">
+    <!--<br> -->
+    <div class="jumbotron" id="whatstudy">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>What is Study Buddy?</h2>
+          <p>Study Buddy is a production tool web application comprising of a to-do list and a calendar to help you keep up with all your work.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="./pictures/NoteCal.png" id="notecal">
+        </div>
+      </div>
+    </div>
+    <div class = "jumbotron">
+      <h2>What do we do?</h2>
+      <p>Provide a efficient and effective calendar and reminder service, along with an incentive to keep you working</p>
+    </div>
+    <div class="jumbotron">
+      <h2>How it works</h2>
+      <p>You pay a monthly fee with a minimum deposit of $5CAD. From there you set up a to-do list containing important tasks you want to complete like Homework, School Projects, Club meetings etc.</p>
+      <br>
+      <p>If all your tasks are completed by their deadlines, then you will recieve a full refund into your bank account.</p>
+      <br>
+    </div>
+    <div class="jumbotron">
+      <h2>"What happens if my tasks aren't completed by the deadline?"</h2>
+      <p>If you do <em>not</em> complete a task within your certain deadline, then your money will be used to continue hosting this application to keep providing you with a seamless experience.</p>
+      <br>
+    </div>
+  </div>
+ </div>
+</body>
+</html>

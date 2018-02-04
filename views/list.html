@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> To-Do </title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+
+		li {
+    	-webkit-touch-callout: none;
+    	-webkit-user-select: none;
+    	-khtml-user-select: none;
+    	-moz-user-select: none;
+    	-ms-user-select: none;
+    	user-select: none;
+			z-index: 2;
+		}
+
+		#navbar{
+			font-size: 100%;
+			z-index: 2;
+		}
+
+
+		.not_active{
+			color:rgba(0, 0, 0, 0.2);
+			z-index: 2;
+			font: Verdana, Geneva, sans-serif;
+			font-size: 15px;
+			padding: 15px;
+		}
+
+		.active{
+			color:rgba(0, 0, 0, 1);
+			z-index: 2;
+			font: Verdana, Geneva, sans-serif;
+			font-size: 15px;
+			padding: 15px;
+		}
+
+		.background {
+		position: fixed;
+		left: 0;
+		right: 0;
+		z-index: 1;
+    height: 25%;
+    width: 25%;
+
+		-webkit-filter: blur(5px);
+		-moz-filter: blur(5px);
+		-o-filter: blur(5px);
+		-ms-filter: blur(5px);
+		filter: blur(5px);
+
+		}
+
+		.content {
+		 position: relative;
+		 left: 0;
+		 right: 0;
+		 z-index: 9999;
+		 margin-left: 200px;
+		 margin-right: 200px;
+		 padding-left: 20px;
+		 padding-right: 20px;
+		}
+
+		#button1{
+			background-color: #4CAF50;
+			border: none;
+		}
+		#list{
+			font: Verdana, Geneva, sans-serif;
+			font-weight: bold;
+			font-size: 5px;
+			padding: 15px;
+		}
+		input[type="text"]{
+    	width:600px
+		}
+  </style>
+	<script>
+		var arr = [];
+		var finished = [];
+		$(document).ready(function(){
+		$("#button").click(()=>{
+			input = $("#text").val();
+			if (input != "")
+			{
+			arr.push([input,"active"]);
+			output = "<ul>"
+			for (var i = arr.length-1; i >= 0; i--) {
+				if(arr[i][1]=="active"){
+					output+="<li id = 'li' class = 'active'>"+arr[i][0]+"</li>"
+				}
+			}
+			output+="</ul>"
+			$("#list_container").html(output);
+			$("#text").val("");
+			// ----------------------------
+			output2 = "<ul>"
+			for (var i = finished.length-1; i >= 0; i--) {
+				if(finished[i][1]=="active"){
+					output2+="<li id = 'li' class = 'active'>"+finished[i][0]+"</li>"
+				}
+			}
+			output2+="</ul>"
+			$("#list_container2").html(output2);
+		}
+		else{
+			alert("Please enter something");
+		}})
+
+		$("#list_container").on("click", "li", function(){
+			if ($(this).hasClass("active"))
+			{
+				$(this).removeClass("active");
+				$(this).addClass("not_active");
+				text_val = $(this).html()
+				for (var k = 0; k< arr.length; k++) {
+					if (arr[k][0]==text_val){
+						finished.push(arr[k])
+						arr.pop(arr[k])
+						break
+					}
+				}
+				// finished.push($(this).html())
+			}else if ($(this).hasClass("not_active"))
+			{
+				$(this).removeClass("not_active");
+				$(this).addClass("active");
+				//$(this).unwrap("<strike>");
+				for (var k = 0; k< arr.length; k++) {
+					if (arr[k][0]==text_val){
+						finished.pop(arr[k])
+						arr.push(arr[k])
+						break
+					}
+				}
+			}
+		});
+	});
+	</script>
+
+</head>
+
+<body id ="body">
+	<div class="background"><img src="pictures/2.jpg" width="1920px" height="1080px"></div>
+	<div class="container" id="navbar">
+
+		<!-- header-->
+		<nav class="navbar navbar-default" id="navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Study Buddy</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="#">
+							<span class="glyphicon glyphicon-log-book"></span>
+							To-Do List
+						</a>
+					</li>
+					<li>
+						<a href="/calendar">
+							<span class="glyphicon glyphicon-calendar"></span>
+							Calendar
+						</a>
+					</li>
+					<li>
+						<a href="/profile">
+							<span class="glyphicon glyphicon-user"></span>
+							Profile
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="http://localhost:3000/signout">
+							Sign Out
+							<span class="glyphicon glyphicon-log-out"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="content">
+			<div class = "panel-group">
+				<div class = "head" "panel panel-default" id = "title">
+				</div>
+			<!-- <script>
+				document.getElementById("titleList").innerHTML = "Hello " + "insert name here";
+			</script> -->
+
+
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 id = "titleList" "panel-title"><a data-toggle="collapse" href="#collapse1">To-Do List</a></h3>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class = "jumbotron" "content" id = "mainToDo">
+								<input type="text" name="Add Element Here" id="text" >
+								<button id="button">Add A Goal</button>
+								<div id="list_container"></div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 id = "titleList" "panel-title"><a data-toggle="collapse" href="#collapse2">Finished List</a></h3>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class = "jumbotron" "content" id = "mainToDo">
+								<div id="list_container2"> </div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+</body>
+</html>

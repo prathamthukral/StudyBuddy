@@ -1,0 +1,78 @@
+File Layout:
+	project
+		app
+			public
+				styles
+					style.css
+			app.js
+			register.js
+			registered.html
+			test.html
+		node_modules	
+			.bin
+			body-parser
+			bson
+			bytes
+			content-type
+			core-utils-is
+			debug
+			depd
+			ee-first
+			es6-promise
+			http-errors
+			inconv-lite
+			inherits
+			isarray
+			media-typer
+			mime-db
+			mimme-types
+			mongodb
+			mongodb-core
+			ms
+			on-finished
+			passport
+			passport-strategy
+			pause
+			qs
+			raw-body
+			readable-stream
+			require_optional
+			resolve-from
+			semver
+			setprototypeof
+			statuses
+			string_decoder
+			type-is
+			unpipe
+		user-db
+
+CMD Prompt:
+	cd program files/mongodb/server/3.4/bin
+	mongod.exe --dbpath {{FILEPATH FOR DB}} --port 8080
+	--> C:\Program Files\MongoDB\Server\3.4\bin>mongod.exe --dbpath /users/prath/desktop/coding/usermanagementapi/user-db --port 8080
+	--> C:\Program Files\MongoDB\Server\3.4\bin>mongod.exe --dbpath /users/prath/desktop/coding/club_api/database --port 8080
+	--> C:\Program Files\MongoDB\Server\3.4\bin>mongod.exe --dbpath /users/prath/desktop/coding/studybuddy/user-db --port 8080
+
+	--> C:/program files/mongodb/server/3.4/bin> mongo.exe --port 8080
+
+	cd {{FILEPATH TO PROJECT}} node app.js
+	--> C:\Users\prath\Desktop\coding\UserManagementAPI>node app.js
+
+ROBO 3T/ROBOMONGO:
+	Connect to DB
+	Port 8080
+	VIEW: 
+		> {{CONNECTION NAME}}
+			> System
+			> {{DB = user-db}}
+				> Collections
+					> {{Collection Name = users}}
+
+
+
+
+
+
+
+
+

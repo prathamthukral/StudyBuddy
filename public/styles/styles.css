@@ -1,0 +1,72 @@
+#sign{
+	background-color: #3A5476;
+	color: white;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#main{
+	margin-top: 3%;
+	background-color: #c8c8c8;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+#mainwhy{
+	margin-top: 3%;
+	margin-bottom: 3%;
+	background-color: #c8c8c8;
+}
+
+#head{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#nav{
+	background-color: #3A5476;
+	color: white;
+}
+
+#navchild{
+	color: white;
+}
+
+#navactive{
+	background-color: #87a2c4;
+	color: white;
+}
+
+#whatstudy{
+	margin-top: 30px;
+}
+
+#notecal{
+	max-height: 300px;
+	float: right;
+}
+
+#loginbtn{
+	margin-bottom: 20px;
+}
+
+@media screen and (min-width: 975px){
+	#main{
+		padding-left: 30%;
+		padding-right: 30%;
+	}
+}
+
+#todoform{
+	padding: 20px;
+	margin-top: 15px;
+	text-align: center;
+}
+
+#actuallist{
+	margin-top: 20px;
+}
