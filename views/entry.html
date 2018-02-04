@@ -188,10 +188,11 @@
     <script>
     $(document).ready(function(){
         var pathname = window.location.href;
-        var token = pathname.slice(pathname.indexOf("?token=") + 7);
-        
-          $("#todoLink").attr("href","/todo?token="+token);
-          $("#calendarLink").attr("href","/calendar?token="+token);
+        var token = pathname.slice(pathname.indexOf("?token=") + 7, pathname.indexOf("&"));
+        var email = pathname.slice(pathname.indexOf("&") + 7)
+        $("#todoLink").attr("href", "/todo?token=" + token+"&email="+email);
+        $("#calendarLink").attr("href", "/calendar?token=" + token+"&email="+email);
+        $("#profileLink").attr("href", "/profile?token=" + token+"&email="+email);
     });
     </script>
 </head>

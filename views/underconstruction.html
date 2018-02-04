@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Calendar</title>
+    <title>Calendar</title>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
@@ -10,15 +11,55 @@
         var pathname = window.location.href;
         var token = pathname.slice(pathname.indexOf("?token=") + 7, pathname.indexOf("&"));
         var email = pathname.slice(pathname.indexOf("&") + 7)
-        alert("/entry?token=" + token+"&email="+email);
-        $("#entryLink").attr("href", "/entry?token=" + token+"&email="+email);
+        $(".entryLink").attr("href", "/todo?token=" + token + "&email=" + email);
+        $("#profileLink").attr("href", "/profile?token=" + token + "&email=" + email);
     });
     </script>
 </head>
-<body>
-    <img src="/pictures/underconstruction.png" alt="under Construction">
-	<h1>Currently Under Construction</h1>
-	<h4>We are looking at integrating Google Sign-in and along with it, google calendar and various other APIst that will ensure the most effective study sessions!</h4>
-	<a id="entryLink" href="/entry" class="btn btn-default">Go Back</a>
+
+<body style="margin-bottom:10px">
+    <!-- header-->
+    <nav class="navbar navbar-default" id="nav">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" id="navchild" href="#">Study Buddy</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li id="">
+                    <a style="color:white" href="#" class="navchild entryLink">
+                            <span class="glyphicon glyphicon-log-book"></span>
+                            To-Do List
+                        </a>
+                </li>
+                <li id="navactive">
+                    <a style="color:white" id="calendarLink" href="/calendar" class="navelement">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            Calendar
+                        </a>
+                </li>
+                <li>
+                    <a style="color:white" href="/profile" id="profileLink" class="navelement">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Profile
+                        </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a style="color:white" href="http://localhost:3000/" id="navchild">
+                            Sign Out
+                            <span class="glyphicon glyphicon-log-out"></span>
+                        </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <img src="/pictures/underconstruction.png" alt="under Construction">
+        <h1>Currently Under Construction</h1>
+        <h4>We are looking at integrating Google Sign-in and along with it, google calendar and various other APIst that will ensure the most effective study sessions!</h4>
+        <a class="entryLink btn btn-default" href="/todo">Go Back</a>
+    </div>
 </body>
+
 </html>

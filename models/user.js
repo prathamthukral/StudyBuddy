@@ -5,5 +5,6 @@ module.exports = mongoose.model('User', new Schema({
     name: String, 
     password: String,
     email: String,
-    todo:[String]
+    todo:[String],
+    pending:Number
 }));
