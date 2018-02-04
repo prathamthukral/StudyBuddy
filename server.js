@@ -141,11 +141,9 @@ app.get("/profile_info", (req,res)=>{
         if (!user) {
             res.json({ success: false, message: 'Authentication failed. User not found.' });
         } else if (user) {
-            console.log(user)
             var stuff="<h4>Name: "+user.name+"</h4>";
             stuff+="<h4>Email: "+user.email+"</h4>";
             stuff+="<h4>Pending: "+user.pending+"</h4>";
-            stuff+="<h4>Total Todos Created: "+user.__v+"</h4>";
             var html = '<!DOCTYPE html><html><head><title> To-Do </title><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- jQuery library -->    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- Latest compiled JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head><body id ="body">' + stuff + '</body></html>'
             res.send(html);
         }
