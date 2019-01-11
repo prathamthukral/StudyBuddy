@@ -10,7 +10,7 @@ app.use(cookieParser())
 
 // hash passwords
 const crypto = require('crypto');
-const secret = 'somesecret';
+const secret = 'secret';
 function hash(text) {
     return crypto.createHmac('sha256', secret).update(text).digest('hex');
 }
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // database setup - mongoose
 var mongoose = require("mongoose")
-mongoose.connect("mongodb://<username>:<password>@ds247674.mlab.com:47674/studybuddy") // PLEASE SET THESE UP YOURSELF ON MLAB
+mongoose.connect("MLAB LINK")
 db = mongoose.connection;
 var User = require('./models/buddies'); // get our mongoose model
 
@@ -245,28 +245,6 @@ app.get("/profile_info", verifyToken, (req, res, next) => {
     });
 })
 
-app.post("/todoSubmit", verifyToken, (req, res, next) => {
-    var _token = req.query.token;
-    var _description = req.body.description
-    User.findOne({
-        email: req.body.email
-    }, function (err, user) {
-
-        if (err) throw err;
-
-        if (!user) {
-            res.json({ success: false, message: 'Authentication failed. User not found.' });
-        } else if (user) {
-            user.todo.push(_description);
-            user.pending = user.pending + 1;
-            user.save()
-        }
-
-    });
-
-    res.redirect("/todo")
-});
-
 app.get("/showTodo", verifyToken, (req, res, next) => {
     var arr = [];
     var html = "";
@@ -282,7 +260,16 @@ app.get("/showTodo", verifyToken, (req, res, next) => {
         } else if (user) {
             arr = user.todos
             // pending
-            table = "<div class='container' style='border:1px solid black; border-radius:4px;'><h1>Pending</h1><table style='padding:10px; width:100%;' class='table table-striped'><tr><th>Number</th><th>Description</th><th>Click to Complete</th></tr>";
+            table = `
+            <div class="container" style="border:1px solid black; border-radius:4px;">
+                <h1>Create Todo</h1>
+                <form action='/createTodo' method='post'>
+                    <input class="form-control" name="description" placeholder="Description">
+                    <input class='btn btn-success' type='submit' value='Create' style="margin-bottom:10px;">
+                </form>
+            </div>
+            `
+            table += "<div class='container' style='border:1px solid black; border-radius:4px;'><h1>Pending</h1><table style='padding:10px; width:100%;' class='table table-striped'><tr><th>Number</th><th>Description</th><th>Click to Complete</th></tr>";
             for (var i = 0; i < arr.length; i++) {
                 if (!arr[i].completed && !arr[i].hidden) {
                     table += "<tr><td>" + (i + 1) + "</td><td>" + arr[i].title + "</td><td><form action='/completeTodo?todo=" + i + "' method='post'><input class='btn btn-success' type='submit' value='Complete'></form></td></tr>"
@@ -308,7 +295,7 @@ app.get("/showTodo", verifyToken, (req, res, next) => {
             }
             table += "</table>"
 
-            html = '<!DOCTYPE html><html><head><title> To-Do </title><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- jQuery library -->    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- Latest compiled JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><style>div{margin-bottom:10px;}</style></head><body id ="body">' + table + '</div></body></html>'
+            html = '<!DOCTYPE html><html><head><title> To-Do </title><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><!-- jQuery library -->    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><!-- Latest compiled JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><style>div{margin-bottom:10px;}input{margin:10px;}</style></head><body id ="body">' + table + '</div></body></html>'
             res.send(html)
         }
     });
@@ -330,6 +317,28 @@ app.post("/completeTodo", verifyToken, (req, res, next) => {
 
             res.redirect("/showTodo")
         }
+    });
+});
+
+app.post("/createTodo", verifyToken, (req, res, next) => {
+    var _todo = req.body.description;
+    User.findOne({
+        email: req.cookies.user.email
+    }, function (err, user) {
+        if (err) throw err;
+
+        if (!user) {
+            res.json({ success: false, message: 'Authentication failed. User not found.' });
+        } else if (user && _todo != "") {
+            user.todos.push({
+                title: _todo,
+                completed: false,
+                created: new Date(),
+                hidden: false
+            });
+            user.save()
+        }
+        res.redirect("/showTodo")
     });
 });
 
