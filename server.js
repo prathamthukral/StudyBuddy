@@ -181,24 +181,6 @@ app.get("/todo", verifyToken, (req, res, next) => {
     res.send(html)
 });
 
-app.get("/calendar", verifyToken, (req, res, next) => {
-    // res.sendFile(__dirname + "/views/underconstruction.html")
-    var html = ""
-    var navBar = require("./views/navBar")
-    html += navBar.navBarCalendar()
-    html +=
-        `<div class="container">
-    <img src="/pictures/underconstruction.png" style="height:50vh; width:auto;" alt="under Construction">
-    <h1>Currently Under Construction</h1>
-    <h4>We are looking at integrating Google Sign-in and along with it, google calendar and various other APIs that
-        will ensure the most effective study sessions!</h4>
-    <a class="entryLink btn btn-default" href="/todo">Go Back</a>
-    </div>`
-    html += "</body>"
-    res.send(html)
-
-});
-
 app.get("/profile", verifyToken, (req, res, next) => {
     var html = ""
     var navBar = require("./views/navBar")
