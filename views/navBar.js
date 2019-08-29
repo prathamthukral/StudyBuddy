@@ -146,12 +146,12 @@ function html(num) {
                           To-Do List
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a style="color:white" class="navchild" href="/calendar" id="calendarLink">
                         <span class="glyphicon glyphicon-calendar"></span>
                         Calendar
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a style="color:white" id="profileLink" href="/profile" class="navactive">
                         <span class="glyphicon glyphicon-user"></span>
